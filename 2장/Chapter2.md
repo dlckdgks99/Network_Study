@@ -62,6 +62,11 @@
   - dotted decimal
 - 인터넷 주소 표현법을 상호변환해 주는 네 개의 주소변환 함수
   - gethostbyname()
+    -IP 주소를 포함하고 있는 구조체 in_addr의 포인터와 이 주소의 길이, 주소타입을 입력하여 해당 호스트의 정보를 가지고 있는 hostent 구조체의 포인터를 리턴
   - gethostbyaddr()
   - inet_pton()
   - inet_ntop()
+
+# 2.3 TCP 클라이언트 프로그램
+### TCP 클라이언트 프로그램 작성 절차
+- 
