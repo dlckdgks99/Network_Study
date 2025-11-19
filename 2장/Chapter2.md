@@ -44,9 +44,24 @@
   - little-endian : 하위 바이트가 메모리에 먼저 저장
   - big-endian : 상위 바이트가 메모리에 먼저 저장
 - 네트워크 바이트 순서 : 포트번호나 IP 주소와 같은 정보를 바이트 단위로 네트워크로 전송하는 순서, high-order 바이트부터 전송
+  
 - Unsigned short interger 변환 (2바이트 크기)
   - htons() : host-to network 바이트 변환
   - ntohs() : network-to-host 바이트 변환
 - Unsigned long interger 변환(4바이트 크기)
   - htonl() : host-to network 바이트 변환
   - ntohl() : network-to-host 바이트 변환
+    
+- 바이트 순서 확인 예
+  - $getservbyname("echo,"udp")
+
+### IP 주소 변환
+- 인터넷 주소 표현 방법
+  - 도메인 네임
+  - IP 주소
+  - dotted decimal
+- 인터넷 주소 표현법을 상호변환해 주는 네 개의 주소변환 함수
+  - gethostbyname()
+  - gethostbyaddr()
+  - inet_pton()
+  - inet_ntop()
