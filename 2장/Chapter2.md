@@ -142,6 +142,7 @@
   - sendto()에 의해 데이터를 전송하는 순가에 소켓과 커널이 내부적으로 연결되는데 Connected UDP는 이과정을 미리함으로 처리속도 향상
 - send(), write()사용
 - 3-way handshaking 하지않아 에러는 connect()가 아닌 read()나 recv()실행 시 발견
+- 
 #  🤔 2장에 대한 생각
 1. IP 주소 변환 4가지에 대해 각각 차이 알기
   - gethostbyname()
@@ -152,7 +153,7 @@
   - struct sockaddr_in → struct sockaddr 로 형 변환해서 소켓 함수에 전달하는 것
   - bind, connect, accept 소켓함수들은 sockaddr만 인자로 받고있기때문에 sockaddr_in을 sockaddr로 캐스팅하는것!
 3. bzero =memset
-  - sockaddr_in의 값들을 처음에 0으로 초기화하지않으면 쓰레값으로인해 소켓함수에서 예상치 못한 오류가 발
+  - sockaddr_in의 값들을 처음에 0으로 초기화하지않으면 쓰레값으로인해 소켓함수에서 예상치 못한 오류가 발생
 3. PORT 지원 X
   - daytime, echo 등 보안문제로 인해 OS가 막혀있다. 그래서 연결해 실패했다 => 예전에는 자동으로 서버가 돌아갔지만 현재는 막혀있어 연결이 실패한다. 새로운 포트를 가진 서버를 구축해 연결을 해야한다
   - 2000년에는 echo, daytime 서버가 자동으로 돌고 있었고 지금은 서버가 꺼져 있으니 직접 서버를 만들어서 실행해야함
