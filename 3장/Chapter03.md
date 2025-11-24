@@ -22,3 +22,28 @@
 | 힙(heap) | molloc()이 할당한 10 바이트 |
 |데이터 영역 | uninit_global_var,static_var, init_global_var=3 |
 | 코드 영역 | 어셈블리된 프로그램 코드 |
+ 
+ - 환경 변수 : 프로세스 실행과 관련된 정보들
+ - 코드 영역 : 프로그램의 어셈블리 코드가 저장되며 데이터 영역에는 초기화된 또는 초기화 되지 않은 데이터들이 저장
+ - 스택 영역 : 현재 호출되어 실행중인 함수의 코드와 환경 정보들이 저장
+ - 자동 변수 : 함수 내부에서 임수로 사용하는 변수
+ - 힙 영역 : 함수가 리턴되어도 메모리가 사라지지 않는 영역, molloc() - free()
+
+### 프로세스의 생성과 종료
+- fork() : 새로운 프로세스를 만들기 위한 함수
+  - 부모 프로세스, 자식 프로세스
+  - 자식 프로세스의 fork()의 리턴값은 항상 0이고, 부모 프로세스의 fork()의 리턴 값은 자식 프로세스의 PID 값이 된다
+  - fork() 실행 실패시 -1 리턴
+- exec() : 프로세스가 하던 작업을 종료하고 다른 작업을 하도록 전환할 때 exec 계열의 함수를 사용
+  - 현재 실행 중이던 프로세스의 이미지를 새로운 프로세스의 이미지로 교체
+  - execl("/bin/ls", "ls", "test.txt",NULL);
+    - int execl(const char *path, const char *arg, ...);
+    - int execv(const char *path, char *const argv[]);
+    - int execle(const char *path, const char *arg, ...,char * const envp[]);
+    - int execve(const char *path, char * const argv[], char * const envp[]);
+    - int execlp(const char *file, const char *arg, ...);
+    - int execvp(const char *file, char * const argv[]);
+    - l : list 형태의 인자를 취한다는 의미
+    - v : vector 형태의 인자를 취한다는 의미
+    - p : 명령을 PATH에서 검색하겠다는 의미
+    - e : 환경변수 인자를 받는 함수임을 의미
