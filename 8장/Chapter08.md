@@ -74,14 +74,15 @@
 - 세마포어 사용 예
 
 ### 세마포어 제어
-- IPC_STAT
-- SETVAL
-- SETALL
-- GETVAL
-- GETALL
-- GETNCNT
-- GETPID
-- IPC_RMID
+- cmd가 가질 수 있는 멸영의 종류
+  - IPC_STAT
+  - SETVAL
+  - SETALL
+  - GETVAL
+  - GETALL
+  - GETNCNT
+  - GETPID
+  - IPC_RMID
 
 ### 세마포어 이용 예제
 ### 공유메모리의 동기화문제 처리
@@ -90,3 +91,7 @@
 - bitmask 형태란? : 정수의 비트 하나하나를 플래그(flag)처럼 사용해 여러 상태를 한 변수 안에 압축해서 표현하는 기법
 - 메시지큐를 이용한 에코 서버 실습을 통해 느낀점
   - 서버 아키텍처를 직접 c로 구현
+- pen_and_note 코드와 shmcontrol 코드 차이점
+  - 둘다 세마포어를 사용
+  - 여러 프로세스가 제한된 개수의 자원을 요구할 때 세마포어로 조절하는 예제(pen_and_note)
+  - 공유메모리를 여러 프로세스가 동시에 접근하면 문제가 발생한다→ 이를 세마포어로 해결하는 실험 코드(shmcontrol)
