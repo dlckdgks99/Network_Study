@@ -33,18 +33,30 @@
   - void phread_testcancel() : 현재 도착한 취소요청이 있는 지를 검사하고 도착한 취소요청이 있으면 스레드를 종료시키는 함수
 - 취소요청을 무시하는 예
 - 지연 취소
+  - 취소요청을 허용하도록 설정하고 허용 타입을 deferred로 설정해야함
+  - pthread_setcancelstate(PHREAD_CANCEL_ENABLE,NULL);
+  - pthread_setcanceltype(PTHREAD_CANCEL_DEFERREd,NULL);
 - 즉시 취소
+  - phtread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
+    
 ### 스레드의 상태
-- 준비
-- 실행
-- 블록
-- 종료
+- 준비 : 스레드가 실행될 수 있는 상태
+- 실행 : CPU의 서비스를 받고 있는 상태
+- 블록 : sleep(), read(), 세마포어 연산 등으로 기다리는 상태
+- 종료 : 스레드가 종료 또는 취소된 상태
+  
 ### 스레드의 동기화문제
 - 스레드 경쟁 예
 - 플래그 사용 예
+
+  
 # 9.2 뮤텍스
-### 뮤텍스 사용 방법
+### 뮤텍스 사용 방
 - 뮤텍스 사용 절차
+  1. pthread_mutex_t mutex;
+  2. pthread_mutext_lock(mutex)
+  3. pthread_muttex_unlock(mutex)
+  
 - 뮤텍스 선언 및 초기화
 - 기본 뮤텍스
 - Timed 타입 뮤텍스
@@ -74,4 +86,7 @@
 - 컴파일 lpthread, -D_REENTRANT 쓰는이유
   - lpthread : pthread 라이브러리를 링크해서 pthread_create, pthread_join 같은 심볼을 해결
   - D_REENTRANT : glibc를 멀티스레드 안전 모드로 컴파일하게 하여 errno, stdio, malloc 등을 스레드별(TLS)로 분리
-
+- 우리 시스템은 프로세스만 쓰는거 같은데 쓰레드를 쓰는 곳이 있을까?
+- thcancel_dis.c 코드
+  - void cancel_and_join(int tid) => void cancel_and_join(pthread_t tid) 로 변경
+  - 64비트 환경에서 pthread_t 는 unsigned long 인데, int 로 받으면서 상위 32비트가 잘려서 잘못된 스레드 ID가 전달됨
