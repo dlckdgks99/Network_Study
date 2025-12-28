@@ -68,11 +68,18 @@
 ## 뮤텍스 사용 예
 
 ### 스레드의 Cleanup 핸들러
-- cleanup 핸들러 등록
+- cleanup 핸들러 등록 : 스레드가 종료하기 직전에 어떤 작업을 처리하도록 할 수 있음
+- void pthread_cleanup_push(void(*routine)(void*),void*arg);
+- void pthread_cleanup_pop(int execute)
+
 # 9.3 스레드의 조건변수
+- 스레드간의 통신을 위해서 조견변수 사용
 ### 조건변수 사용 방법
 - 조건변수의 정의
 - 조건변수의 동작
+  - int pthread_cond_wait(pthread_cond_t *cond,pthread_mutex_t *mutex);
+    - 뮤텍스해제-> 블록상태 -> 조건알림을 받음 -> 깨어나면서 뮤텍스를 얻음
+    - 
 - 조건변수의 생성과 삭제
 ### 조건변수 사용 예
 ### 스레드의 세마포어
